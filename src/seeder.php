@@ -4,10 +4,7 @@
  * Este archivo se encarga de "limpiar" la base de datos y cargar los ejercicios predefinidos.
  */
 
-require 'rb-postgres.php';
-
-// 1. CONEXIÓN A LA BASE DE DATOS
-R::setup('pgsql:host=db;dbname=mydatabase', 'myuser', 'mypassword');
+require 'db.php';
 
 echo "--- INICIANDO PROCESO DE CARGA DE DATOS ---\n";
 

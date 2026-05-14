@@ -7,8 +7,6 @@ session_start();
 require 'Parsedown.php';
 $parsedown = new Parsedown();
 
-if (!defined('PDO::MYSQL_ATTR_INIT_COMMAND')) define('PDO::MYSQL_ATTR_INIT_COMMAND', 1002);
-
 require 'db.php';
 require 'auth.php';
 

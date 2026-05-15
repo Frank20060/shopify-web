@@ -233,6 +233,9 @@ if (is_dir($md_dir)) {
             font-size: 0.9rem;
             margin: 0;
         }
+        a{
+            color: var(--neon-green);
+        }
     </style>
 </head>
 <body>

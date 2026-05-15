@@ -584,6 +584,85 @@ if (isset($_GET['edit'])) {
             border-color: var(--accent-primary);
             box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
         }
+
+        /* MEJORA DE FORM-GROUPS Y INPUTS ESPECÍFICOS */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="number"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 13px;
+            transition: var(--transition);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        /* File input styling */
+        input[type="file"] {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 2px dashed var(--border-color) !important;
+            padding: 15px !important;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+        input[type="file"]::file-selector-button {
+            background: var(--accent-secondary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            margin-right: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        input[type="file"]::file-selector-button:hover {
+            background: var(--accent-primary);
+            color: #000;
+        }
+
+        /* Color input styling */
+        input[type="color"] {
+            -webkit-appearance: none;
+            border: none;
+            width: 80px;
+            height: 45px;
+            cursor: pointer;
+            background: none;
+            padding: 0;
+            vertical-align: middle;
+        }
+        input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+        input[type="color"]::-webkit-color-swatch {
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 <body>
@@ -864,14 +943,19 @@ if (isset($_GET['edit'])) {
     <p style="color: var(--text-muted); margin-bottom: 24px;">Sube y gestiona archivos Markdown para la documentación de la plataforma</p>
 
     <div class="module" style="margin-bottom: 32px;">
-        <div style="padding: 24px; border-bottom: 1px solid var(--border-color);">
-            <h2 style="margin: 0 0 16px 0;">📤 Subir Nuevo Archivo (.md)</h2>
+        <div style="padding: 28px;">
+            <h2 style="margin: 0 0 20px 0; display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 24px;">📤</span> Subir Nuevo Archivo (.md)
+            </h2>
             <form method="POST" enctype="multipart/form-data">
-                <div class="form-group" style="margin-bottom: 15px;">
-                    <label style="display:block; margin-bottom:10px;">Seleccionar archivo:</label>
-                    <input type="file" name="md_file" accept=".md" class="form-control" required>
+                <div class="form-group">
+                    <label>Selecciona un archivo Markdown de tu equipo:</label>
+                    <input type="file" name="md_file" accept=".md" required>
+                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">El archivo se guardará en la carpeta <code>docs/md/</code> y estará disponible para asignar a retos.</p>
                 </div>
-                <button type="submit" name="upload_md" class="addlink">Subir a la carpeta docs/md/</button>
+                <div style="margin-top: 25px;">
+                    <button type="submit" name="upload_md" class="addlink" style="width: 100%; justify-content: center; padding: 14px;">🚀 SUBIR A LA CARPETA DOCS/MD/</button>
+                </div>
             </form>
         </div>
     </div>
@@ -929,29 +1013,34 @@ if (isset($_GET['edit'])) {
                     <button class="addlink" onclick="document.getElementById('categoryForm').style.display='block'">➕ Crear Categoría</button>
                 </div>
 
-                <div id="categoryForm" class="module" style="display: none; margin-bottom: 32px;">
-                    <div style="padding: 24px;">
-                        <h2>Crear Nueva Categoría</h2>
+                <div id="categoryForm" class="module" style="display: none; margin-bottom: 32px; border-color: var(--accent-primary);">
+                    <div style="padding: 28px;">
+                        <h2 style="margin-bottom: 24px; color: var(--accent-primary);">🏷️ Crear Nueva Categoría</h2>
                         <form method="POST">
-                            <div class="form-group">
-                                <label>Nombre de la categoría:</label>
-                                <input type="text" name="category_name" required>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                <div class="form-group">
+                                    <label>Nombre de la categoría:</label>
+                                    <input type="text" name="category_name" placeholder="Ej: Liquid Avanzado" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Slug (URL amigable):</label>
+                                    <input type="text" name="category_slug" placeholder="Ej: liquid-adv" required>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label>Slug (identificador único):</label>
-                                <input type="text" name="category_slug" required>
+                                <label>Descripción de la categoría:</label>
+                                <textarea name="category_description" rows="3" placeholder="Describe qué aprenderán los alumnos en esta sección..."></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Descripción:</label>
-                                <textarea name="category_description" rows="3"></textarea>
+                                <label>Color Identificativo:</label>
+                                <div style="display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.02); padding: 10px; border-radius: 12px; border: 1px solid var(--border-color);">
+                                    <input type="color" name="category_color" value="#10b981">
+                                    <span style="font-size: 12px; color: var(--text-muted);">Este color se usará en los badges y menús.</span>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Color (hexadecimal):</label>
-                                <input type="color" name="category_color" value="#10b981">
-                            </div>
-                            <div class="submit-row">
-                                <button type="button" onclick="document.getElementById('categoryForm').style.display='none'" class="btn btn-secondary">Cancelar</button>
-                                <button type="submit" name="create_category" class="btn btn-default">💾 Crear Categoría</button>
+                            <div class="submit-row" style="background: none; padding: 20px 0 0 0;">
+                                <button type="button" onclick="document.getElementById('categoryForm').style.display='none'" class="btn btn-secondary" style="padding: 12px 25px;">CANCELAR</button>
+                                <button type="submit" name="create_category" class="addlink" style="padding: 12px 30px;">💾 CREAR CATEGORÍA</button>
                             </div>
                         </form>
                     </div>

@@ -13,26 +13,18 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
 
- # Servicio de PHP
+  # Servicio de PHP
   php:
-    image: php:8.2-apache
+    build: . # Ahora usa tu Dockerfile
     container_name: php_app
     restart: always
     depends_on:
       - db
+    env_file: .env # Carga el DATABASE_URL de tu .env
     ports:
       - "8080:80"
     volumes:
-      - ./src:/var/www/html # Corregido: era /var/www/html, no /var/var/html
-    # Usamos "|" para que el comando sea más legible y robusto
-    command: 
-      - /bin/sh
-      - -c
-      - |
-        apt-get update
-        apt-get install -y libpq-dev
-        docker-php-ext-install pdo pdo_pgsql pdo_mysql
-        apache2-foreground
+      - ./src:/var/www/html # Sincroniza tu código en tiempo real
 
 volumes:
   db_data:

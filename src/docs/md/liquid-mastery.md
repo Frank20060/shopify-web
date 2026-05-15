@@ -2,20 +2,6 @@
 
 Guía definitiva de aprendizaje para desarrolladores de temas Shopify.
 
-## Índice Rápido
-- [¿Qué es?](#qué-es-liquid-y-para-qué-sirve)
-- [Sintaxis](#sintaxis-fundamental)
-- [Objetos Globales](#los-objetos-globales-de-shopify)
-- [Objeto Product](#el-objeto-product-en-detalle)
-- [Filtro Money](#💰-el-filtro-money-y-los-precios)
-- [Control de Flujo](#🔄-control-de-flujo-if-elsif-else-unless)
-- [Bucles](#🔄-bucle-for-y-objeto-forloop)
-- [Variables](#📝-variables-assign-y-capture)
-- [Matemáticas](#🧮-filtros-matemáticos)
-- [Arrays](#📋-filtros-de-arrays)
-- [Patrones](#🧩-patrones-de-lógica-compleja)
-- [Strings](#📝-filtros-de-strings-útiles)
-
 ## ¿Qué es Liquid y para qué sirve?
 
 Liquid es el lenguaje de plantillas creado por Shopify que permite construir páginas web dinámicas. Mezcla HTML estático con lógica dinámica en el mismo archivo. Su único trabajo es generar texto (normalmente HTML) a partir de datos que Shopify le proporciona.

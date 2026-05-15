@@ -2,17 +2,6 @@
 
 Documentación completa para lógica de backend en el checkout.
 
-## Índice Rápido
-- [¿Qué son?](#qué-son-las-shopify-functions)
-- [Tipos](#tipos-de-functions-disponibles)
-- [Estructura](#estructura-de-un-proyecto-de-function)
-- [GraphQL](#📡-graphql-pedir-datos-al-backend)
-- [TypeScript](#🟦-typescript-en-functions-lo-básico)
-- [Output Schema](#📤-el-esquema-de-output-qué-devuelve-una-function)
-- [Dinero](#🔢-trabajar-con-importes-monetarios)
-- [Ejemplos](#🏗️-ejemplos-de-lógica-completa)
-- [Buenas Prácticas](#🛡️-buenas-prácticas-fundamentales)
-
 ## ¿Qué son las Shopify Functions?
 
 Son fragmentos de código que se ejecutan **dentro de los servidores de Shopify** en momentos concretos del proceso de compra. Son la herramienta oficial para personalizar el comportamiento del checkout sin necesidad de un servidor externo propio.
